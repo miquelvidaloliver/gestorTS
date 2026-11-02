@@ -1,69 +1,332 @@
 "use strict";
-// 2. Estat de l'aplicació (Array global)
-let llistaElements = [];
-// 3. Funció per llegir el formulari i afegir un nou element a l'array
+let Poble;
+let metodeOrdenacio;
+let LlistaPobles = [
+    {
+        "nom": "Vilafranca",
+        "Gastronomia": 5,
+        "Cultura": 4,
+        "Ambient": 3.5,
+        "Saturacio": 2,
+        "Categoria": "es Pla",
+        "Especialitat": "Es cruce i Tomeu Penya",
+        "Platja": false,
+        "Mitja": 3.5
+    },
+    {
+        "nom": "Sencelles",
+        "Gastronomia": 4.5,
+        "Cultura": 4.5,
+        "Ambient": 4,
+        "Saturacio": 3,
+        "Categoria": "es Pla",
+        "Especialitat": "Much i Lluc Parisio",
+        "Platja": false,
+        "Mitja": 3.33
+    },
+    {
+        "nom": "Llucmajor",
+        "Gastronomia": 3.5,
+        "Cultura": 3,
+        "Ambient": 5,
+        "Saturacio": 1.5,
+        "Categoria": "Lleveig",
+        "Especialitat": "Bona gent",
+        "Platja": true,
+        "Mitja": 3.33
+    },
+    {
+        "nom": "Artà",
+        "Gastronomia": 3,
+        "Cultura": 4.5,
+        "Ambient": 3.5,
+        "Saturacio": 2,
+        "Categoria": "Llevant",
+        "Especialitat": "Abdón i Darder",
+        "Platja": true,
+        "Mitja": 3
+    },
+    {
+        "nom": "Porretes",
+        "Gastronomia": 4,
+        "Cultura": 3,
+        "Ambient": 2,
+        "Saturacio": 1,
+        "Categoria": "es Pla",
+        "Especialitat": "Festa",
+        "Platja": false,
+        "Mitja": 2.67
+    },
+    {
+        "nom": "Campanet",
+        "Gastronomia": 2.5,
+        "Cultura": 2.5,
+        "Ambient": 3.5,
+        "Saturacio": 0.5,
+        "Categoria": "Tramuntana",
+        "Especialitat": "Toni Horrach",
+        "Platja": false,
+        "Mitja": 2.67
+    },
+    {
+        "nom": "Petra",
+        "Gastronomia": 4,
+        "Cultura": 3.5,
+        "Ambient": 2,
+        "Saturacio": 2,
+        "Categoria": "es Pla",
+        "Especialitat": "Clovelles",
+        "Platja": false,
+        "Mitja": 2.5
+    },
+    {
+        "nom": "Fernalitx",
+        "Gastronomia": 1,
+        "Cultura": 4.5,
+        "Ambient": 4.5,
+        "Saturacio": 3,
+        "Categoria": "Migjorn",
+        "Especialitat": "Estrigasons",
+        "Platja": true,
+        "Mitja": 2.33
+    },
+    {
+        "nom": "Mancor de la Vall",
+        "Gastronomia": 2.5,
+        "Cultura": 3,
+        "Ambient": 2,
+        "Saturacio": 0.5,
+        "Categoria": "Tramuntana",
+        "Especialitat": "Fira de l'Esclatasang",
+        "Platja": false,
+        "Mitja": 2.33
+    },
+    {
+        "nom": "Campos",
+        "Gastronomia": 3.5,
+        "Cultura": 1,
+        "Ambient": 2.5,
+        "Saturacio": 0.5,
+        "Categoria": "Migjorn",
+        "Especialitat": "Panxitos",
+        "Platja": true,
+        "Mitja": 2.17
+    },
+    {
+        "nom": "Ariany",
+        "Gastronomia": 2,
+        "Cultura": 3.5,
+        "Ambient": 1.5,
+        "Saturacio": 0.5,
+        "Categoria": "Gregal",
+        "Especialitat": "Mallorca profunda",
+        "Platja": false,
+        "Mitja": 2.17
+    },
+    {
+        "nom": "Sa Pobla",
+        "Gastronomia": 4.5,
+        "Cultura": 4,
+        "Ambient": 1,
+        "Saturacio": 3.5,
+        "Categoria": "Tramuntana",
+        "Especialitat": "Immigració",
+        "Platja": false,
+        "Mitja": 2
+    },
+    {
+        "nom": "Ses Sardines",
+        "Gastronomia": 2.5,
+        "Cultura": 3.5,
+        "Ambient": 2.5,
+        "Saturacio": 3.5,
+        "Categoria": "Migjorn",
+        "Especialitat": "Un carrer",
+        "Platja": true,
+        "Mitja": 1.67
+    },
+    {
+        "nom": "Santanyí",
+        "Gastronomia": 1.5,
+        "Cultura": 3,
+        "Ambient": 3.5,
+        "Saturacio": 4,
+        "Categoria": "Migjorn",
+        "Especialitat": "Guirilandia",
+        "Platja": true,
+        "Mitja": 1.33
+    },
+    {
+        "nom": "Manacor",
+        "Gastronomia": 0.5,
+        "Cultura": 2.5,
+        "Ambient": 0.5,
+        "Saturacio": 1,
+        "Categoria": "Xaloc",
+        "Especialitat": "No coments",
+        "Platja": true,
+        "Mitja": 0.83
+    }
+];
+// 2. Funció per llegir el formulari i afegir un nou element a l'array
 function afegirElement() {
     const inputNom = document.getElementById('iNom');
+    const inputGastronomia = document.getElementById('iGastronomia');
+    const inputCultura = document.getElementById('iCultura');
+    const inputAmbient = document.getElementById('iAmbient');
+    const inputSaturacio = document.getElementById('iSaturacio');
+    const inputEspecialitat = document.getElementById('iEspecialitat');
     const selectCategoria = document.getElementById('sCategoria');
-    const inputValor = document.getElementById('iValor');
-    const checkEstat = document.getElementById('cEstat');
-    // Validació bàsica
-    if (inputNom.value.trim() === '') {
-        alert('Escriu un nom abans d\'afegir!');
-        return;
-    }
-    // Crear l'objecte
-    const nouElement = {
+    const checkPlatja = document.getElementById('cPlatja');
+    //const inputMitja = document.getElementById('Mitja') as HTMLInputElement;
+    let Mitja = (parseFloat(inputGastronomia.value) + parseFloat(inputCultura.value) + parseFloat(inputAmbient.value) - parseFloat(inputSaturacio.value)) / 3;
+    let Mitjao = Number(Mitja.toFixed(2));
+    Poble = {
         nom: inputNom.value,
-        categoria: selectCategoria.value,
-        valor: Number(inputValor.value),
-        estat: checkEstat.checked
-    };
-    // Afegir-lo a l'array
-    llistaElements.push(nouElement);
-    // Netejar el formulari
-    inputNom.value = '';
-    inputValor.value = '0';
-    checkEstat.checked = false;
-    // Actualitzar la pantalla
-    actualitzarUI();
-}
-// 4. Funció per esborrar un element per la seva posició de l'array
-function esborrarElement(index) {
-    llistaElements.splice(index, 1);
+        Gastronomia: parseFloat(inputGastronomia.value),
+        Cultura: parseFloat(inputCultura.value),
+        Ambient: parseFloat(inputAmbient.value),
+        Saturacio: parseFloat(inputSaturacio.value),
+        Categoria: selectCategoria.value,
+        Especialitat: inputEspecialitat.value,
+        Platja: checkPlatja.checked,
+        Mitja: Mitjao,
+    }; // Actualitzar la pantalla
+    console.log(Poble);
+    LlistaPobles.push(Poble);
+    if (metodeOrdenacio = "Gastronomia") {
+        LlistaPobles.sort((a, b) => b.Gastronomia - a.Gastronomia);
+    }
+    if (metodeOrdenacio = "Cultura") {
+        LlistaPobles.sort((a, b) => b.Cultura - a.Cultura);
+    }
+    if (metodeOrdenacio = "Ambient") {
+        LlistaPobles.sort((a, b) => b.Ambient - a.Ambient);
+    }
+    if (metodeOrdenacio = "Saturacio") {
+        LlistaPobles.sort((a, b) => b.Saturacio - a.Saturacio);
+    }
+    if (metodeOrdenacio = "Mitja") {
+        LlistaPobles.sort((a, b) => b.Mitja - a.Mitja);
+    }
     actualitzarUI();
 }
 // 5. Funció per dibuixar l'array al DOM
 function actualitzarUI() {
-    const contenidor = document.getElementById('llistaContenidor');
-    const totalSpan = document.getElementById('totalElements');
-    // Netejem el contingut anterior
-    contenidor.innerHTML = '';
-    // Actualitzem el comptador total
-    totalSpan.innerText = llistaElements.length.toString();
-    // Recorrem l'array i creem els elements HTML
-    llistaElements.forEach((element, index) => {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'item-card';
-        itemDiv.innerHTML = `
-      <div class="item-info">
-        <strong>${element.nom}</strong> [${element.categoria}]
-        <p>Valor: ${element.valor} | ${element.estat ? '✅ Actiu' : '❌ Inactiu'}</p>
-      </div>
-    `;
-        // Botó per eliminar l'element
-        const btnEliminar = document.createElement('button');
-        btnEliminar.className = 'btn-esborrar';
-        btnEliminar.innerText = 'Eliminar';
-        btnEliminar.onclick = () => esborrarElement(index);
-        itemDiv.appendChild(btnEliminar);
-        contenidor.appendChild(itemDiv);
-    });
+    const CardPoble = document.getElementById('CardPoble');
+    let html;
+    html = '<h3></h3>';
+    for (let i = 0; i < LlistaPobles.length; i++) {
+        html += '<div class=\'cardPoble\'>';
+        html += '<h2>' + LlistaPobles[i].nom + '</h2>';
+        if (Number.isInteger(LlistaPobles[i].Gastronomia)) {
+            html += '<h2>';
+            for (let j = 0; j < LlistaPobles[i].Gastronomia; j++) {
+                html += '<i class="bi bi-star-fill"></i>';
+            }
+            html += '</h2>';
+        }
+        else {
+            html += '<h2>';
+            for (let j = 0; j < LlistaPobles[i].Gastronomia - 1; j++) {
+                html += '<i class="bi bi-star-fill"></i>';
+            }
+            html += '<i class="bi bi-star-half"></i>';
+            html += '</h2>';
+        }
+        if (Number.isInteger(LlistaPobles[i].Cultura)) {
+            html += '<h2>';
+            for (let j = 0; j < LlistaPobles[i].Cultura; j++) {
+                html += '<i class="bi bi-star-fill"></i>';
+            }
+            html += '</h2>';
+        }
+        else {
+            html += '<h2>';
+            for (let j = 0; j < LlistaPobles[i].Cultura - 1; j++) {
+                html += '<i class="bi bi-star-fill"></i>';
+            }
+            html += '<i class="bi bi-star-half"></i>';
+            html += '</h2>';
+        }
+        if (Number.isInteger(LlistaPobles[i].Ambient)) {
+            html += '<h2>';
+            for (let j = 0; j < LlistaPobles[i].Ambient; j++) {
+                html += '<i class="bi bi-star-fill"></i>';
+            }
+            html += '</h2>';
+        }
+        else {
+            html += '<h2>';
+            for (let j = 0; j < LlistaPobles[i].Ambient - 1; j++) {
+                html += '<i class="bi bi-star-fill"></i>';
+            }
+            html += '<i class="bi bi-star-half"></i>';
+            html += '</h2>';
+        }
+        if (Number.isInteger(LlistaPobles[i].Saturacio)) {
+            html += '<h2>';
+            for (let j = 0; j < LlistaPobles[i].Saturacio; j++) {
+                html += '<i class="bi bi-star-fill"></i>';
+            }
+            html += '</h2>';
+        }
+        else {
+            html += '<h2>';
+            for (let j = 0; j < LlistaPobles[i].Saturacio - 1; j++) {
+                html += '<i class="bi bi-star-fill"></i>';
+            }
+            html += '<i class="bi bi-star-half"></i>';
+            html += '</h2>';
+        }
+        html += '<h2>' + LlistaPobles[i].Especialitat + '</h2>';
+        html += '<h2>' + LlistaPobles[i].Categoria + '</h2>';
+        if (LlistaPobles[i].Platja) {
+            html += '<h2>' + 'Té platja' + '</h2>';
+        }
+        else {
+            html += '<h2>' + 'No té platja' + '</h2>';
+        }
+        html += '<h2>' + LlistaPobles[i].Mitja + '</h2>';
+        html += `<button onclick="bLlevar(${i})">Llevar</button>`;
+        html += '<\/div>';
+    }
+    console.table(LlistaPobles);
+    CardPoble.innerHTML = html;
 }
-// 6. Assegurar que el DOM està carregat abans d'assignar esdeveniments
-document.addEventListener('DOMContentLoaded', () => {
-    const btnAfegir = document.getElementById('btnAfegir');
-    btnAfegir === null || btnAfegir === void 0 ? void 0 : btnAfegir.addEventListener('click', afegirElement);
-    // Renderitzat inicial
+function bLlevar(id) {
+    LlistaPobles.splice(id, 1);
     actualitzarUI();
-});
+}
+function OrdenarGastronomia() {
+    metodeOrdenacio = 'gastronomia';
+    LlistaPobles.sort((a, b) => b.Gastronomia - a.Gastronomia);
+    actualitzarUI();
+}
+function OrdenarCultura() {
+    metodeOrdenacio = 'Cultura';
+    LlistaPobles.sort((a, b) => b.Cultura - a.Cultura);
+    actualitzarUI();
+}
+function OrdenarAmbient() {
+    metodeOrdenacio = 'Ambient';
+    LlistaPobles.sort((a, b) => b.Ambient - a.Ambient);
+    actualitzarUI();
+}
+function OrdenarSaturacio() {
+    metodeOrdenacio = 'Saturacio';
+    LlistaPobles.sort((a, b) => b.Saturacio - a.Saturacio);
+    actualitzarUI();
+}
+function OrdenarMitja() {
+    metodeOrdenacio = 'Mitja';
+    LlistaPobles.sort((a, b) => b.Mitja - a.Mitja);
+    actualitzarUI();
+}
+actualitzarUI();
+// 6. Assegurar que el DOM està carregat abans d'assignar esdeveniments
+//document.addEventListener('DOMContentLoaded', () => {
+//     const btnAfegir = document.getElementById('btnAfegir');
+//     btnAfegir?.addEventListener('click', afegirElement);
+//     actualitzarUI();
+// });

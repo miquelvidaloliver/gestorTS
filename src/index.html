@@ -3,47 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestor de la Pràctica</title>
+    <title>EL Millor Poble</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css">
+
 </head>
 <body>
-<div class="container">
-    <h1>Gestor d'Elements</h1>
+
+<h1>Quin és el millor poble?</h1>
+
+<div class="Formulari">
 
     <!-- Formulari d'entrada de dades -->
     <div class="card">
-        <h2>Afegir Nou Element</h2>
+
+        <h2>Poble a afegir</h2>
+
 
         <div class="field">
-            <label for="iNom">Nom / Títol:</label>
-            <input type="text" id="iNom" placeholder="Escriu un nom...">
+            <label for="iNom">Nom des Poble:</label>
+            <input type="text" id="iNom" placeholder="Escriu el nom del Poble...">
         </div>
-
         <div class="field">
-            <label for="sCategoria">Categoria:</label>
+            <label for="iGastronomia">Gastronomia:</label>
+            <input type="number" id="iGastronomia" value="0" min="0" max="5" step="0.5">
+            <div>
+                <div class="field">
+                    <label for="iCultura">Cultura:</label>
+                    <input type="number" id="iCultura" value="0" min="0" max="5" step="0.5">
+                </div>
+                <div class="field">
+                    <label for="iAmbient">Ambient(Població):</label>
+                    <input type="number" id="iAmbient" value="0" min="0" max="5" step="0.5">
+                </div>
+                <div class="field">
+                    <label for="iSaturacio">Saturació:</label>
+                    <input type="number" id="iSaturacio" value="0" min="0" max="5" step="0.5">
+                </div>
+
+
+                <div class="field">
+                    <label for="iEspecialitat">Especialitat:</label>
+                    <input type="text" id="iEspecialitat" placeholder="Escriu què el fa únic...">
+                </div>
+
+
+
+
+                <div class="field">
+            <label for="sCategoria">Tipus de Ubicació:</label>
             <select id="sCategoria">
-                <option value="Opció A">Opció A</option>
-                <option value="Opció B">Opció B</option>
-                <option value="Opció C">Opció C</option>
+                <option value="Indefinit">Tria una Ubicació</option>
+                <option value="Tramuntana">Tramuntana</option>
+                <option value="Gregal">Gregal</option>
+                <option value="Llevant">Llevant</option>
+                <option value="Xaloc">Xaloc</option>
+                <option value="Migjorn">Migjorn</option>
+                <option value="Lleveig">Lleveig</option>
+                <option value="Ponent">Ponent</option>
+                <option value="Mestral">Mestral</option>
+                <option value="es Pla">Es Plà</option>
+                <option value="forasterlandia">Forasterlandia</option>
+
+
+
             </select>
         </div>
 
-        <div class="field">
-            <label for="iValor">Valor / Preu / Punts:</label>
-            <input type="number" id="iValor" value="0">
+
+
+
         </div>
 
         <div class="field-checkbox">
             <label>
-                <input type="checkbox" id="cEstat"> Actiu / Completat
+                <input type="checkbox" id="cPlatja"> No té platja/ té platja
             </label>
         </div>
 
-        <button id="btnAfegir">Afegir a la Llista</button>
+
+
+
+        <button onclick="afegirElement()">Afegir a la Llista</button>
+<!--        <button id="btnAfegir">Afegir a la Llista</button>-->
+
+
+
+
+    </div>
+
+
+
+</div>
+
+
+    <div class="classificador" id="Classificador">
+        <h3 class="Titol">Ranking</h3>
+        <div class="Seleccionador" id="Seleccionador">
+
+      <div>  <button onclick="OrdenarGastronomia()" id="oGastronomia">Ordenar per Gastronomia</button>         </div>
+
+        <div>  <button onclick="OrdenarCultura()" id="oCultura">Ordenar per Cultura</button>        </div>
+
+        <div>  <button onclick="OrdenarAmbient()" id="oAmbient">Ordenar per Ambient</button>        </div>
+
+        <div>  <button onclick="OrdenarSaturacio()" id="oSaturacio">Ordenar per Saturació</button>         </div>
+
+            <div>  <button onclick="OrdenarMitja()" id="oMitja">Ordenar per Mitja</button>         </div>
+
+        </div>
+            <div class="Enunciats">
+        <div> <h2>Nom:</h2></div>
+        <div> <h2>Gastronomia:</h2></div>
+        <div> <h2>Cultura:</h2></div>
+        <div> <h2>Ambient:</h2></div>
+        <div> <h2>Saturacion:</h2></div>
+        <div> <h2>Especialitat:</h2></div>
+        <div> <h2>Categoria:</h2></div>
+        <div> <h2>Platja:</h2></div>
+        <div> <h2>Mitja:</h2></div>
+        <div> <h2>Accions</h2></div>
+    </div>
+
+
+
+        <div class="CardPoble" id="CardPoble">
+            <h2 id="nom"></h2>
+            <h2 id="Gastronomia"></h2>
+            <h2 id="Cultura"></h2>
+            <h2 id="Ambient"></h2>
+            <h2 id="Saturacio"></h2>
+            <h2 id="Especialitat"></h2>
+            <h2 id="Categoria"></h2>
+            <h2 id="Platja"></h2>
+            <h2 id="Mitja"></h2>
+
+
+
+        </div>
     </div>
 
 </div>
 
+
+
+}
+
+
+
 <script src="app.js"></script>
+
 </body>
+
 </html>
