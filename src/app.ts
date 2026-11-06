@@ -182,11 +182,6 @@ let LlistaPobles: Poble[] = [
     }
 ];
 
-
-
-
-
-// 2. Funció per llegir el formulari i afegir un nou element a l'array
 function afegirElement(): void {
     const inputNom = document.getElementById('iNom') as HTMLInputElement;
     const inputGastronomia = document.getElementById('iGastronomia') as HTMLSelectElement;
@@ -196,7 +191,6 @@ function afegirElement(): void {
     const inputEspecialitat = document.getElementById('iEspecialitat') as HTMLInputElement;
     const selectCategoria = document.getElementById('sCategoria') as HTMLInputElement;
     const checkPlatja = document.getElementById('cPlatja') as HTMLInputElement;
-    //const inputMitja = document.getElementById('Mitja') as HTMLInputElement;
 
     let Mitja:number = (parseFloat(inputGastronomia.value)+parseFloat(inputCultura.value)+parseFloat(inputAmbient.value)-parseFloat(inputSaturacio.value))/3;
     let Mitjao =  Number(Mitja.toFixed(2));
@@ -211,7 +205,7 @@ function afegirElement(): void {
        Platja: checkPlatja.checked,
        Mitja: Mitjao,
 
-   } // Actualitzar la pantalla
+   }
 
     console.log(Poble);
    LlistaPobles.push(Poble);
@@ -237,7 +231,6 @@ function afegirElement(): void {
 }
 
 
-// 5. Funció per dibuixar l'array al DOM
 function actualitzarUI(): void {
 
     const CardPoble =document.getElementById('CardPoble') as HTMLElement;
@@ -365,20 +358,8 @@ actualitzarUI()
 function OrdenarMitja(): void {
     metodeOrdenacio = 'Mitja';
     LlistaPobles.sort((a, b) => b.Mitja - a.Mitja);
-
-
-
 actualitzarUI()
 }
 
 actualitzarUI()
 
-
-
-
-// 6. Assegurar que el DOM està carregat abans d'assignar esdeveniments
-//document.addEventListener('DOMContentLoaded', () => {
-//     const btnAfegir = document.getElementById('btnAfegir');
-//     btnAfegir?.addEventListener('click', afegirElement);
-//     actualitzarUI();
-// });
