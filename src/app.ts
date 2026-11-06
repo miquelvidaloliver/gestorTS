@@ -1,4 +1,4 @@
-// 1. Model de dades (Interface)
+
 interface Poble {
     nom: string;
     Gastronomia: number;
