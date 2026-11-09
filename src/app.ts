@@ -1,4 +1,3 @@
-
 interface Poble {
     nom: string;
     Gastronomia: number;
@@ -182,6 +181,11 @@ let LlistaPobles: Poble[] = [
     }
 ];
 
+
+
+
+
+
 function afegirElement(): void {
     const inputNom = document.getElementById('iNom') as HTMLInputElement;
     const inputGastronomia = document.getElementById('iGastronomia') as HTMLSelectElement;
@@ -192,23 +196,24 @@ function afegirElement(): void {
     const selectCategoria = document.getElementById('sCategoria') as HTMLInputElement;
     const checkPlatja = document.getElementById('cPlatja') as HTMLInputElement;
 
+
     let Mitja:number = (parseFloat(inputGastronomia.value)+parseFloat(inputCultura.value)+parseFloat(inputAmbient.value)-parseFloat(inputSaturacio.value))/3;
     let Mitjao =  Number(Mitja.toFixed(2));
-   Poble= {
-       nom: inputNom.value,
-       Gastronomia: parseFloat (inputGastronomia.value),
-       Cultura: parseFloat(inputCultura.value),
-       Ambient:  parseFloat(inputAmbient.value),
-       Saturacio:  parseFloat(inputSaturacio.value),
-       Categoria: selectCategoria.value,
-       Especialitat: inputEspecialitat.value,
-       Platja: checkPlatja.checked,
-       Mitja: Mitjao,
+    Poble= {
+        nom: inputNom.value,
+        Gastronomia: parseFloat (inputGastronomia.value),
+        Cultura: parseFloat(inputCultura.value),
+        Ambient:  parseFloat(inputAmbient.value),
+        Saturacio:  parseFloat(inputSaturacio.value),
+        Categoria: selectCategoria.value,
+        Especialitat: inputEspecialitat.value,
+        Platja: checkPlatja.checked,
+        Mitja: Mitjao,
 
-   }
+    }
 
     console.log(Poble);
-   LlistaPobles.push(Poble);
+    LlistaPobles.push(Poble);
     if(metodeOrdenacio="Gastronomia"){
         LlistaPobles.sort((a, b) => b.Gastronomia - a.Gastronomia);
     }
@@ -231,10 +236,11 @@ function afegirElement(): void {
 }
 
 
+
 function actualitzarUI(): void {
 
     const CardPoble =document.getElementById('CardPoble') as HTMLElement;
-   let html:string;
+    let html:string;
 
     html='<h3></h3>'
 
@@ -242,20 +248,20 @@ function actualitzarUI(): void {
     for (let i = 0; i < LlistaPobles.length; i++) {
         html += '<div class=\'cardPoble\'>'
         html += '<h2>'+ LlistaPobles[i].nom + '</h2>'
-      if (Number.isInteger(LlistaPobles[i].Gastronomia)) {
-          html += '<h2>'
-          for(let j = 0; j < LlistaPobles[i].Gastronomia ; j++) {
-            html += '<i class="bi bi-star-fill"></i>'
-         }
-          html += '</h2>'
-      } else{
-          html += '<h2>'
-          for(let j = 0; j < LlistaPobles[i].Gastronomia-1 ; j++) {
-              html += '<i class="bi bi-star-fill"></i>'
-          }
-          html += '<i class="bi bi-star-half"></i>'
-          html += '</h2>'
-      }
+        if (Number.isInteger(LlistaPobles[i].Gastronomia)) {
+            html += '<h2>'
+            for(let j = 0; j < LlistaPobles[i].Gastronomia ; j++) {
+                html += '<i class="bi bi-star-fill"></i>'
+            }
+            html += '</h2>'
+        } else{
+            html += '<h2>'
+            for(let j = 0; j < LlistaPobles[i].Gastronomia-1 ; j++) {
+                html += '<i class="bi bi-star-fill"></i>'
+            }
+            html += '<i class="bi bi-star-half"></i>'
+            html += '</h2>'
+        }
 
         if (Number.isInteger(LlistaPobles[i].Cultura)) {
             html += '<h2>'
@@ -337,29 +343,31 @@ function bLlevar(id:number): void {
 function OrdenarGastronomia(): void{
     metodeOrdenacio='gastronomia';
     LlistaPobles.sort((a, b) => b.Gastronomia - a.Gastronomia);
-actualitzarUI()
+    actualitzarUI()
 }
 
 function OrdenarCultura(): void{
     metodeOrdenacio='Cultura';
     LlistaPobles.sort((a, b) => b.Cultura - a.Cultura);
-actualitzarUI()
+    actualitzarUI()
 }
 function OrdenarAmbient(): void{
     metodeOrdenacio='Ambient';
     LlistaPobles.sort((a, b) => b.Ambient - a.Ambient);
-actualitzarUI()
+    actualitzarUI()
 }
 function OrdenarSaturacio(): void{
     metodeOrdenacio='Saturacio';
     LlistaPobles.sort((a, b) => b.Saturacio - a.Saturacio);
-actualitzarUI()
+    actualitzarUI()
 }
 function OrdenarMitja(): void {
     metodeOrdenacio = 'Mitja';
     LlistaPobles.sort((a, b) => b.Mitja - a.Mitja);
-actualitzarUI()
+
+
+
+    actualitzarUI()
 }
 
 actualitzarUI()
-
